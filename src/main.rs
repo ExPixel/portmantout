@@ -142,7 +142,7 @@ fn create_word_and_ext_from_line(line: String) -> Option<Word> {
 }
 
 fn find_all_extensions(mut words: Vec<Word>, options: &ProgramOptions) -> Vec<Word> {
-	let display_step = if cfg!(feature = "large") {
+	let display_step = if options.use_large_words_file {
 		100
 	} else {
 		words.len() / 100
@@ -223,8 +223,8 @@ fn find_extensions_for(word_idx: usize, words: &Vec<Word>) -> (usize, Vec<u32>) 
 	return (word_idx, extensions)
 }
 
-fn write_words_and_extensions_to_file(mut file: File, words: &Vec<Word>) {
-	let display_step = if cfg!(feature = "large") {
+fn write_words_and_extensions_to_file(mut file: File, words: &Vec<Word>, options: &ProgramOptions) {
+	let display_step = if options.use_large_words_file {
 		100
 	} else {
 		words.len() / 100
@@ -272,7 +272,7 @@ fn append_portmantout_word(last_word: &String, new_word: &String, pbuf: &mut Str
 	if is_match {
 		if matched_plength < new_word.len() {
 			let new_word_sub = &new_word[matched_plength..];
-			if new_word_sub.len() >= options.minimum_overlap {
+			if matched_plength >= options.minimum_overlap {
 				if options.verbose {
 					println!("added {} ({})", new_word_sub, new_word);
 				}
@@ -383,7 +383,7 @@ fn main() {
 		if options.save_extensions {
 			println!("Writing words and extensions to {}", words_ext_file_path);
 			let words_ext_file = File::create(words_ext_file_path).expect(&format!("Failed to open words file {}.", words_ext_file_path));
-			write_words_and_extensions_to_file(words_ext_file, &words);
+			write_words_and_extensions_to_file(words_ext_file, &words, &options);
 			println!("Finished writing words and extensions.");
 		}
 	} else {
@@ -401,7 +401,7 @@ fn main() {
 	if options.verbose {
 		println!("added {}", &words[rand_word_start_idx].value);
 	}
-	
+
 	pbuf.push_str(&words[rand_word_start_idx].value);
 
 	'portmantout_loop: loop {
