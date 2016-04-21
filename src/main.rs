@@ -22,7 +22,7 @@ pub struct ProgramOptions {
 	threads: usize,
 	save_extensions: bool,
 	verbose: bool,
-	max_word_chain: u64,
+	max_word_chain: i64,
 	allow_word_reuse: bool,
 	use_large_words_file: bool
 }
@@ -336,7 +336,7 @@ fn load_options() -> ProgramOptions {
 		threads: threads as usize,
 		save_extensions: save_extensions,
 		verbose: verbose,
-		max_word_chain: max_word_chain as u64,
+		max_word_chain: max_word_chain,
 		allow_word_reuse: allow_word_reuse,
 		use_large_words_file: use_large_words_file
 	}
@@ -396,12 +396,13 @@ fn main() {
 	let rand_word_start_idx = rand::random::<usize>() % words.len();
 	let mut last_word_idx = rand_word_start_idx;
 	let mut pbuf = String::new();
-	let mut state = PortmantoutState::new(100000);
+	let mut state = PortmantoutState::new(options.max_word_chain);
 
 	if options.verbose {
 		println!("added {}", &words[rand_word_start_idx].value);
-		pbuf.push_str(&words[rand_word_start_idx].value);
 	}
+	
+	pbuf.push_str(&words[rand_word_start_idx].value);
 
 	'portmantout_loop: loop {
 		if let Some(next_word_idx) = build_portmantout(last_word_idx, &mut words, &mut pbuf, &mut state, &options) {
