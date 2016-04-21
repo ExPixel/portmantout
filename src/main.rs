@@ -347,13 +347,13 @@ fn main() {
 	let options = load_options();
 
 	println!("\n=== Portmantout Settings ===");
-	println!("Minimum Overlap: {}", options.minimum_overlap);
-	println!("Threads: {}", options.threads);
-	println!("Save Extensions: {}", options.save_extensions);
-	println!("Verbose: {}", options.verbose);
-	println!("Max Word Chain: {}", options.max_word_chain);
-	println!("Allow Word Reuse: {}", options.allow_word_reuse);
-	println!("USE LARGE WORDS FILE: {}", options.use_large_words_file);
+	println!("Minimum Overlap:       {}", options.minimum_overlap);
+	println!("Threads:               {}", options.threads);
+	println!("Save Extensions:       {}", options.save_extensions);
+	println!("Verbose:               {}", options.verbose);
+	println!("Max Word Chain:        {}", options.max_word_chain);
+	println!("Allow Word Reuse:      {}", options.allow_word_reuse);
+	println!("USE LARGE WORDS FILE:  {}", options.use_large_words_file);
 	println!("============================\n");
 
 
