@@ -1,0 +1,24 @@
+# The overlap required between a word and one following
+# it in our portmantout
+minimum-overlap = 1
+
+# The number of threads used to find word extensions.
+thread = 4
+
+# Save extensions file.
+save-extensions = true
+
+# Verbose output when adding words to a portmantout.
+verbose = false
+
+# Maximum portmantout word chain.
+max-word-chain = 100000
+
+# Allow the re-use of words.
+allow-word-reuse = true
+
+# True if this should be using the large word file.
+# WARNING This takes a while (10-20 minutes), uses a lot of memory,
+# and can generate a 5GB file. Set the save-extensions option to false
+# if you don't want this file to be saved.
+use-large-words-file = false

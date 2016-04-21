@@ -1,0 +1,8 @@
+[package]
+name = "portmantout"
+version = "0.1.0"
+authors = ["Adolph C. <adolph.celestin@gmail.com>"]
+
+[dependencies]
+rand = "0.3"
+toml = "0.1.28"
