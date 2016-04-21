@@ -1,6 +1,6 @@
 # The overlap required between a word and one following
 # it in our portmantout
-minimum-overlap = 1
+minimum-overlap = 4
 
 # The number of threads used to find word extensions.
 thread = 4
@@ -15,7 +15,7 @@ verbose = false
 max-word-chain = 100000
 
 # Allow the re-use of words.
-allow-word-reuse = true
+allow-word-reuse = false
 
 # True if this should be using the large word file.
 # WARNING This takes a while (10-20 minutes), uses a lot of memory,
